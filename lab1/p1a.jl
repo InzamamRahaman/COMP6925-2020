@@ -7,7 +7,7 @@ PROPORTION_MAT = [
     [-15.0 -2.0]
 ]
 
-LIMITS = [50.0, 50.0, -60.0]
+LIMITS = [50.0, 40.0, -60.0]
 
 COSTS = [8.0, 4.0]
 
@@ -15,6 +15,8 @@ m = Model(Clp.Optimizer)
 @variable(m, x[1:2] >= 0)
 @objective(m, Min, COSTS' * x)
 @constraint(m, PROPORTION_MAT * x .≥ LIMITS)
+
+print(m)
 
 optimize!(m)
 
